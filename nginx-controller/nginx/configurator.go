@@ -204,10 +204,11 @@ func pathOrDefault(path string) string {
 }
 
 func endpointsToUpstreamServers(endps api.Endpoints, servicePort int) []UpstreamServer {
+
 	var upsServers []UpstreamServer
 	for _, subset := range endps.Subsets {
 		for _, port := range subset.Ports {
-			if port.Port == servicePort {
+			if port.Port == int32(servicePort) {
 				for _, address := range subset.Addresses {
 					ups := UpstreamServer{Address: address.IP, Port: fmt.Sprintf("%v", servicePort)}
 					upsServers = append(upsServers, ups)
