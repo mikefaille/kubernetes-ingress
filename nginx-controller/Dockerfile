@@ -9,7 +9,7 @@ COPY main.go nginx/ingress.tmpl nginx/nginx.conf.tmpl /
 
 RUN rm /etc/nginx/conf.d/*
 
-RUN apt update && apt install curl && \
+RUN apt update && apt install curl -y && \
     cd /nginx-ingress && \
     curl -O https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz && \
     tar xvfp go1.6.2.linux-amd64.tar.gz && \
